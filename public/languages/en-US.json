@@ -1,11 +1,11 @@
 {
   "GENERAL": {
-    "NEXT": "Next ENNNN 11 222",
-    "NEXT_STEP": "Next step",
-    "BACK": "Back",
-    "ALL": "All",
-    "NONE": "None",
-    "CREATE_NEW": "Create New",
+    "NEXT": "Next EN",
+    "NEXT_STEP": "Next Step EN",
+    "BACK": "Back EN",
+    "ALL": "All EN",
+    "NONE": "None EN",
+    "CREATE_NEW": "Create New EN",
     "RESET": "Reset",
     "WARNING": "Warning",
     "ERROR": "Error",

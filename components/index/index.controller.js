@@ -4,7 +4,7 @@ $('#language-select').on('change', function() {
     window.location = window.location.origin + window.location.pathname + '?lang=' + this.value;
 });
 
-$('form').on('submit', function(event) {
+$('.form-edit').on('submit', function(event) {
     event.preventDefault();
     let form = $(this);
 

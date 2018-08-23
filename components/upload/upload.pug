@@ -1,12 +1,22 @@
 extends ../../views/layout
 
-block content
-    h1(class='mb2')= 'Upload JSON File'
+block extendHead 
+    link(rel='stylesheet', href='/stylesheets/selectize.css')
+    script(src='/javascripts/selectize.min.js')
 
-    form(action='/upload/translation' method='post' encType='multipart/form-data')
-        div(class='languages')
-            select(name='language')
-                each lang in languages
-                    option(value=lang.CultureId selected=lang.CultureId === selectedLanguage)= lang.Language
-        input(type='file' name='fileInput' value='Upload file')
-        input(type='submit')
+block content
+    div(class='container')
+        h2(class='mb2')= 'Upload JSON File'
+
+        form(action='/upload/translation' method='post' encType='multipart/form-data')
+            div(class='sub-header')
+                div(class='languages')
+                    select(name='language' id='language-select')
+                        each lang in languages
+                            option(value=lang.CultureId selected=lang.CultureId === selectedLanguage)= lang.Language
+                div(class='languages-side')
+                    input(type='file' name='fileInput' value='Upload file')
+                    input(type='submit')
+
+    script.
+        window.$('#language-select').selectize();
