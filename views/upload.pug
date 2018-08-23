@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1(class='mb2')= 'Upload JSON File'
+
+    form(action='/upload/translation' method='post' encType='multipart/form-data')
+        div(class='languages')
+            select(name='language')
+                each lang in languages
+                    option(value=lang.CultureId selected=lang.CultureId === selectedLanguage)= lang.Language
+        input(type='file' name='fileInput' value='Upload file')
+        input(type='submit')

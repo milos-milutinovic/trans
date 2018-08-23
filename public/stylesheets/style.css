@@ -1,0 +1,101 @@
+
+body {
+  padding: 20px;
+  font: 16px sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+input, textarea {
+    font-size: 14px;
+}
+
+select {
+    padding: 4px;
+}
+
+.sub-item {
+    margin: 15px 0;
+    padding-left: 5px;
+    border-left: 1px solid #c4c4c4;
+}
+
+.item {
+    margin: 6px 0;
+    display: table;
+}
+
+.item-key,
+.item-value {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.item-value {
+    color: #565656;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.item-value textarea {
+    width: 600px;
+}
+
+.item-value-input__small {
+    width: 300px;
+}
+
+.item-value-input__large {
+    width: 600px;
+}
+
+.edit-btn {
+    margin-left: 10px;
+}
+
+.item-heading {
+    margin: 5px 0;
+}
+
+.item-heading-full-path {
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.pl {
+    padding-left: 15px;
+}
+
+.mb2 {
+    margin-bottom: 30px;
+}
+
+.loading {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.message {
+    margin-left: 10px;
+}
+
+.success {
+    color: #4caa6e;
+}
+
+.error {
+    color: #ff4242;
+}
+
+.languages {
+    margin-bottom: 20px;
+}
