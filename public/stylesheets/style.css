@@ -1,7 +1,7 @@
 
 body {
-  padding: 20px;
-  font: 16px sans-serif;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -21,6 +21,11 @@ input, textarea {
 
 select {
     padding: 4px;
+    visibility: hidden;
+}
+
+.container {
+    padding: 0 20px;
 }
 
 .sub-item {
@@ -59,7 +64,7 @@ select {
 }
 
 .edit-btn {
-    margin-left: 10px;
+    margin-left: 10px !important;
 }
 
 .item-heading {
@@ -97,5 +102,16 @@ select {
 }
 
 .languages {
+    max-width: 300px;;
     margin-bottom: 20px;
+    min-height: 53px;
+}
+
+/* OVERRIDES */
+.selectize-input {
+    font-size: 14px !important;
+}
+
+.selectize-dropdown .option {
+    cursor: pointer !important;
 }

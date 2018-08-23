@@ -1,5 +1,8 @@
-extends layout
+extends ../../views/layout
 
+block extendHead 
+    link(rel='stylesheet', href='/stylesheets/selectize.css')
+    script(src='/javascripts/selectize.min.js')
 block content
     h1(class='mb2')= title
 
@@ -41,6 +44,6 @@ block content
         +renderTranslation(translations)
 
     script
-        include ../controlers/index.js
+        include ./index.controller.js
     
                 

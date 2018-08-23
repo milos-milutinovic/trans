@@ -6,18 +6,18 @@ const logger = require('morgan');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 
-const indexRouter = require('./routes/index');
-const uploadRouter = require('./routes/upload');
-const itemRouter = require('./routes/item');
+const components = require('./components/components');
+const api = require('./api/api');
 
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
+app.set('views', [
+    path.join(__dirname, 'views'),
+    path.join(__dirname, 'components')
+]);
 app.use(bodyParser.json());
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,9 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
-app.use('/', indexRouter);
-app.use('/upload', uploadRouter);
-app.use('/item', itemRouter);
+app.use('/', components);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

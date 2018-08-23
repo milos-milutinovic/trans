@@ -2,7 +2,7 @@ const express = require('express');
 const jsonfile = require('jsonfile');
 const _ = require('lodash');
 const router = express.Router();
-const { errorPayload, successPayload, jsonFormat } = require('../shared/util');
+const { errorPayload, successPayload, jsonFormat } = require('../../shared/util');
 
 router.post('/edit', function(req, res, next) {
     let payload = req.body;

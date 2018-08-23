@@ -3,8 +3,8 @@ const fs = require('fs');
 const jsonfile = require('jsonfile');
 const _ = require('lodash');
 const router = express.Router();
-const { errorPayload, getLanguages } = require('../shared/util');
-const { defaultLanguage } = require('../config');
+const { errorPayload, getLanguages } = require('../../shared/util');
+const { defaultLanguage } = require('../../config');
 
 router.get('/', function(req, res, next) {
     let lang = req.query.lang || defaultLanguage;
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
             return;
         }
 
-        res.render('upload', {
+        res.render('upload/upload', {
             languages: languagesParsed,
             selectedLanguage: lang
         });
@@ -29,15 +29,14 @@ router.get('/', function(req, res, next) {
 router.post('/translation', function(req, res, next) {
 
     let lang = req.body.language || defaultLanguage;
-
     //TODO: implement validation - if language is valid
+    
+    let file = req.files.fileInput;    
 
-    if (req.files.fileInput.mimetype !== 'application/json') {
+    if (!file || file.mimetype !== 'application/json') {
         res.status(400);
         res.send('JSON please.');
     } else {
-        let file = req.files.fileInput;
-
         file.mv(`public/languages/${lang}.json`, (err) => {
             if (err) {
                 return res.status(500).send(err);

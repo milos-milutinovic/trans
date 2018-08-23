@@ -1,3 +1,5 @@
+$('#language-select').selectize();
+
 $('#language-select').on('change', function() {
     window.location = window.location.origin + window.location.pathname + '?lang=' + this.value;
 });
@@ -32,7 +34,7 @@ $('form').on('submit', function(event) {
 function editField(form, payload) {
     showLoader(form);
     return $.ajax({
-        url: '/item/edit',
+        url: 'api/item/edit',
         method: 'post',
         contentType: 'application/json',
         data: JSON.stringify(payload)

@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
-const { errorPayload, getLanguages } = require('../shared/util');
-const { defaultLanguage } = require('../config');
+const { errorPayload, getLanguages } = require('../../shared/util');
+const { defaultLanguage } = require('../../config');
 
-router.get('/index', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
     let lang = req.query.lang || defaultLanguage;
 
@@ -22,14 +22,14 @@ router.get('/index', function(req, res, next) {
 
             let jsonFileContent = null;
             try {
-                delete require.cache[require.resolve(`../public/languages/${lang}.json`)]
-                jsonFileContent = require(`../public/languages/${lang}.json`);
+                delete require.cache[require.resolve(`../../public/languages/${lang}.json`)]
+                jsonFileContent = require(`../../public/languages/${lang}.json`);
             } catch (ex) {
                 res.redirect(`/upload?lang=${lang}`);
                 return;
             }
 
-            res.render('index', {
+            res.render('index/index', {
                 title: 'Dobrodosli u Trans-lation',
                 translations: jsonFileContent,
                 languages: languagesParsed,
