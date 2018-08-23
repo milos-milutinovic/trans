@@ -3,45 +3,50 @@ extends ../../views/layout
 block extendHead 
     link(rel='stylesheet', href='/stylesheets/selectize.css')
     script(src='/javascripts/selectize.min.js')
+    
 block content
-    h1(class='mb2')= title
+    div(class='container')
+        h2(class='mb2')= title
 
-    div(class='languages')
-        select(id='language-select')
-            each lang in languages
-                option(value=lang.CultureId selected=lang.CultureId === selectedLanguage)= lang.Language
+        div(class='sub-header')
+            div(class='languages')
+                select(id='language-select')
+                    each lang in languages
+                        option(value=lang.CultureId selected=lang.CultureId === selectedLanguage)= lang.Language
 
-    a(href=`/languages/${selectedLanguage}.json` download)= 'Export File'
+            a(href=`/languages/${selectedLanguage}.json` download class='languages-side mdl-button mdl-js-button mdl-button--raised mdl-button--colored')= 'Export File'
+            //- a(href=`/languages/${selectedLanguage}.json` download class='export-button')= 'Export File'
 
-    - let tabIndex = 1;
+        - let tabIndex = 1;
 
-    mixin renderTranslation(object, parentId)
-        each value, key in object
-            - let id = key;
-            - if (parentId) id = parentId + '.' + id;
+        mixin renderTranslation(object, parentId)
+            each value, key in object
+                - let id = key;
+                - if (parentId) id = parentId + '.' + id;
 
-            if typeof value === 'string'
-                div(class='item')
-                    span(class='item-key')= key + ':'
-                    span(class='item-value')
-                        form(id='form-'+ id action='#' autocomplete='off')
-                            input(type='hidden' name='language' value=selectedLanguage)
-                            input(type='hidden' name='key' value=id)
-                            if (value.length > 100) 
-                                textarea(id=id, name='text' class='item-value-input' rows='4' tabindex=tabIndex++)= value
-                            else
-                                input(id=id type='text' name='text' tabindex=tabIndex++ class=value.length < 50 ? 'item-value-input item-value-input__small' : 'item-value-input item-value-input__large' value=value data-default-value=value)
-                            button(class='btn edit-btn' type='submit')= 'Edit'
-            else if typeof value === 'object'
-                div(class='sub-item')
-                    div(class='item-heading')
-                        strong= key
-                        em(class='item-heading-full-path')= ' (' + (parentId ? parentId + '.' : '') + key + ')'
-                    div(class='pl')
-                        +renderTranslation(value, id)
+                if typeof value === 'string'
+                    div(class='item')
+                        span(class='item-key')= key + ':'
+                        span(class='item-value')
+                            form(id='form-'+ id action='#' class='form-edit' autocomplete='off')
+                                input(type='hidden' name='language' value=selectedLanguage)
+                                input(type='hidden' name='key' value=id)
+                                if (value.length > 100) 
+                                    textarea(id=id, name='text' class='item-value-input' rows='4' tabindex=tabIndex++)= value
+                                else
+                                    input(id=id type='text' name='text' tabindex=tabIndex++ class=value.length < 50 ? 'item-value-input item-value-input__small' : 'item-value-input item-value-input__large' value=value data-default-value=value)
+                                //- button(class='edit-btn mdl-button mdl-js-button' type='submit')= 'Edit'
+                                button(class='edit-btn' type='submit')= 'Edit'
+                else if typeof value === 'object'
+                    div(class='sub-item')
+                        div(class='item-heading')
+                            strong= key
+                            em(class='item-heading-full-path')= ' (' + (parentId ? parentId + '.' : '') + key + ')'
+                        div(class='pl')
+                            +renderTranslation(value, id)
 
-    div
-        +renderTranslation(translations)
+        div
+            +renderTranslation(translations)
 
     script
         include ./index.controller.js
