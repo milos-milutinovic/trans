@@ -1,4 +1,5 @@
 const express = require('express');
+const jsonfile = require('jsonfile');
 const router = express.Router();
 const _ = require('lodash');
 const { errorPayload, getLanguages } = require('../../shared/util');
@@ -22,11 +23,9 @@ router.get('/', function(req, res, next) {
 
             let jsonFileContent = null;
             try {
-                delete require.cache[require.resolve(`../../public/languages/${lang}.json`)]
-                jsonFileContent = require(`../../public/languages/${lang}.json`);
+                jsonFileContent = jsonfile.readFileSync(`public/languages/${lang}.json`)
             } catch (ex) {
-                res.redirect(`/upload?lang=${lang}`);
-                return;
+                return res.redirect(`/upload?lang=${lang}`);
             }
 
             res.render('index/index', {

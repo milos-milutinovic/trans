@@ -35,8 +35,12 @@ select {
 }
 
 .item {
-    margin: 6px 0;
+    padding: 6px 2px;
     display: table;
+}
+
+.item:hover .edit-btn {
+    display: inline-block;
 }
 
 .item-key,
@@ -64,6 +68,8 @@ select {
 }
 
 .edit-btn {
+    cursor: pointer;
+    display: none;
     margin-left: 10px !important;
 }
 
